@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Start Page</title>
+        <h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    <h:body>
+        <!-- Start Conversation upon page Load -->
+        <f:metadata>
+            <f:viewAction action="#{order.start}" />
+        </f:metadata>
+        <h:dataTable value="#{order.menuItems}" var="o"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+                        <h:column>
+    				<f:facet name="header">Image</f:facet>
+                                <h:graphicImage value="#{o.pizza.imageURL}" styleClass="img-size" />
+    			</h:column>
+
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Order No</f:facet>
+    				<!-- row record -->
+    				#{o.pizza.id}
+    			</h:column>
+
+    			<h:column>
+    				<f:facet name="header">Product Name</f:facet>
+    				#{o.pizza.name}
+    			</h:column>
+                        <h:column>
+                                <f:facet name="header">Product Description</f:facet>
+    				#{o.pizza.description}
+    			</h:column>
+
+    			<h:column>
+    				<f:facet name="header">Price</f:facet>
+    				#{o.pizza.prize / 100}
+    			</h:column>
+                        <h:column>
+                            <f:facet name="header">Anzahl</f:facet>
+                            #{o.anz}<br/>
+                            <h:form>
+                                <h:commandButton value="+" type="submit" action="#{o.amountPlus()}"/>
+                                <h:commandButton value="-" type="submit" action="#{o.ammountMinus()}"/>
+                            </h:form>
+    			</h:column>
+    		</h:dataTable>
+        <h:form>
+            <h:commandButton value="Zurueck" type="submit" action="#{order.end}" />
+            <h:commandButton value="Bestellen" type="submit" action="#{order.proceedToLogin()}" />
+        </h:form>
+       
+    </h:body>
+</html>

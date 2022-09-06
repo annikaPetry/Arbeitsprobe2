@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>User Account anlegen</title>
+    </h:head>
+    <h:body>
+        <h1>User Account anlegen</h1>
+        <h1>Kontaktdaten: </h1>
+    
+        <h:form>
+            <h:panelGrid columns = "2">
+
+                <h:outputLabel for="vorname" 
+                               value="Vorname "/>
+                <h:inputText id="vorname" 
+                             value="#{order.user.vName}"/>
+                <h:outputLabel for="nachname" 
+                               value="Nachname "/>
+                <h:inputText id="nachname" 
+                             value="#{order.user.nName}"/>
+                <h:outputLabel for="telefonnummer" 
+                                value="Telefonnummer "/>
+                <h:inputText id="telefonnummer" 
+                             value="#{order.user.telNr}"/>
+
+            </h:panelGrid>
+                
+                
+            <h:outputLabel for="Lieferadresse" 
+                           value="Lieferadresse: "/>
+            
+            <h:panelGrid columns = "2"  >
+                
+                <h:outputLabel for="strasse" 
+                                value="Strasse "/>
+                <h:inputText id="strasse" 
+                             value="#{order.user.str}"/>
+
+                <h:outputLabel for="hausnr" 
+                                value="Hausnummer "/>
+                <h:inputText id="hausnr" 
+                             value="#{order.user.hausNr}"/>
+                
+                <h:outputLabel for="plz" 
+                                value="Postleitzahl "/>
+                #{order.user.plz}
+
+                <h:outputLabel for="wohnort" 
+                                value="Wohnort "/>
+                <h:inputText id="wohnort" 
+                             value="#{order.user.ort}"/>
+                </h:panelGrid>
+
+            
+            <h:panelGrid columns = "1" >
+                <h:commandButton value="Abbrechen"
+                                 action="#{order.abbort()}"/>
+                <h:commandButton value="Weiter"
+                                 action="#{order.addUser()}"/>
+            </h:panelGrid>
+            
+            <h:messages id="messages"></h:messages>
+
+            
+        </h:form>
+        
+    </h:body>
+</html>

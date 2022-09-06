@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Start Page</title>
+        <h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+    <h:body>
+        <h4>Lieferadresse: </h4>#{order.user.addrToString()}
+        <h4>Telefonnummer: </h4>#{order.user.telNr}
+        <h:dataTable value="#{order.itemsToBePurchased}" var="o"
+                        styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+        <h:column>
+                <f:facet name="header">Image</f:facet>
+                <h:graphicImage value="#{o.pizza.imageURL}" styleClass="img-size" />
+        </h:column>
+
+        <h:column>
+                <!-- column header -->
+                <f:facet name="header">Order No</f:facet>
+                <!-- row record -->
+                #{o.order.id}
+        </h:column>
+
+        <h:column>
+                <f:facet name="header">Product Name</f:facet>
+                #{o.pizza.name}
+        </h:column>
+        <h:column>
+                <f:facet name="header">Product Description</f:facet>
+                #{o.pizza.description}
+        </h:column>
+
+        <h:column>
+                <f:facet name="header">Price</f:facet>
+                #{o.pizza.prize / 100}
+        </h:column>    
+        
+        <h:column>
+            <f:facet name="header">Menge</f:facet>
+            #{o.anz}
+        </h:column>
+            
+            <h:column>
+                <f:facet name="header">Gesamt</f:facet>
+                #{(o.pizza.prize * o.anz)/100}
+            </h:column>
+        </h:dataTable><br/>
+        <h5>Gesamtpreis (Netto): </h5>
+            #{order.netto()}€
+        <h5>7% MxSt: </h5>
+            #{order.mwst()}€
+        <h5>Gesamtpreis (Brutto): </h5>
+            #{order.brutto()/100}€
+        <h:form>
+            <h:commandButton value="Abbrechen" type="submit" action="#{order.abbort()}" />
+            <h:commandButton value="Bestellen" type="submit" action="#{order.placeOrder()}" />
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>Bestellbestätigung</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <h5>Hallo, #{order.user.getvName()} #{order.user.getnName()}</h5>
+            <h5>Ihre Bestellnummer: </h5>
+            <h4>#{order.bestellnr}</h4>
+            <h5>Bei Rückfragen, nennen Sie bitte diese Bestellnummer. </h5>
+            <h5>Sie erreichen uns unter: 0176 - 57946805 </h5>
+            <h:commandButton value="neue Bestellung aufgeben" type="submit" action="#{order.abbort()}" />
+        </h:form>
+    </body>
+</html>

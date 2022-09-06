@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Start Page</title>
+    </h:head>
+    <h:body>
+        
+      
+        
+        <h:form rendered="#{!postcode.showNoDeliveryHint}">
+            <h1>Willkommen!</h1>
+            <h:inputText value="#{postcode.postCodeValue}" onblur="if (this.value === ''){this.value = 'Deine Postleitzahl'; }"
+                onfocus="if (this.value === 'Deine Postleitzahl') {this.value = ''; }" />
+            <h3>Wollen Sie Liefern lassen?</h3>
+            <h:commandButton value="Ja" type="submit" action="#{postcode.checkForDeleviry}" />
+            <h:commandButton value="Nein" type="submit" action="#{postcode.redirectToOrder}" />
+        </h:form>
+        <h:panelGroup layout="block" rendered="#{postcode.showNoDeliveryHint}">
+            <p>Sorry, Leider liefern wir nicht ein dein Gebiet!</p>
+            <h:commandButton value="zurueck" type="submit" action="#{order.abbort()}" />
+        </h:panelGroup>
+    </h:body>
+</html>
